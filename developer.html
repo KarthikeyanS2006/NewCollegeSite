@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Team - Sethupathy Government Arts College</title>
+    <meta name="description" content="Meet the development team behind the Sethupathy Government Arts College website.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .dev-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .dev-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s;
+        }
+
+        .dev-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member.featured {
+            border: 3px solid #667eea;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .team-member.featured::before {
+            height: 8px;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-avatar i {
+            font-size: 4rem;
+            color: white;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .member-dept {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .member-bio {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .member-contact {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <a href="tel:+914567220268"><i class="fas fa-phone-alt"></i> +91-4567-220268</a>
+                <a href="mailto:principal@sgacrmd.edu.in"><i class="fas fa-envelope"></i> principal@sgacrmd.edu.in</a>
+            </div>
+            <div class="top-actions">
+                <a href="#" class="btn-sm">Alumni</a>
+                <a href="contact.html" class="btn-sm">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-section">
+                <img src="assets/images/tn_logo.png" alt="TN Govt Logo" class="govt-logo">
+                <div class="college-title">
+                    <h1>Sethupathy Government Arts College</h1>
+                    <p>Affiliated to Alagappa University | Accredited with 'A' Grade by NAAC</p>
+                    <span>Ramanathapuram - 623 502, Tamil Nadu, India</span>
+                </div>
+                <img src="assets/images/logoclg.png" alt="College Logo" class="college-logo">
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html"><i class="fas fa-address-card"></i> About Us <i
+                            class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="about.html#history">History</a>
+                        <a href="about.html#vision">Vision & Mission</a>
+                        <a href="about.html#principal">Principal's Desk</a>
+                    </div>
+                </li>
+                <li><a href="departments.html"><i class="fas fa-book"></i> Departments</a></li>
+                <li class="dropdown">
+                    <a href="academics.html"><i class="fas fa-graduation-cap"></i> Academics <i
+                            class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="academics.html#ug">UG Courses</a>
+                        <a href="academics.html#pg">PG Courses</a>
+                        <a href="academics.html#research">Research</a>
+                    </div>
+                </li>
+                <li><a href="index.html#research"><i class="fas fa-microscope"></i> Research</a></li>
+                <li><a href="index.html#facilities"><i class="fas fa-building"></i> Facilities</a></li>
+                <li><a href="admissions.html"><i class="fas fa-user-plus"></i> Admissions</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="iqac.html"><i class="fas fa-award"></i> IQAC/NAAC</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="dev-hero">
+        <div class="container">
+            <h1><i class="fas fa-code"></i> Development Team</h1>
+            <p>The Minds Behind SGAC's Digital Presence</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container section-padding">
+
+        <!-- Introduction -->
+        <section class="mb-5">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                    This website was developed with dedication and passion by our talented team, combining academic
+                    leadership with technical expertise to create a modern, user-friendly digital platform for
+                    Sethupathy Government Arts College.
+                </p>
+            </div>
+        </section>
+
+        <!-- Team Members -->
+        <section class="mb-5">
+            <div class="team-grid">
+
+                <!-- Principal -->
+                <div class="team-member featured">
+                    <span class="badge"><i class="fas fa-star"></i> Principal</span>
+                    <div class="member-avatar">
+                        <img src="assets/images/Principal_image.jpg" alt="Dr. P. Seenuvasa Kumaran">
+                    </div>
+                    <h3 class="member-name">Dr. P. Seenuvasa Kumaran</h3>
+                    <div class="member-role">Principal & Project Supervisor</div>
+                    <div class="member-dept">Sethupathy Government Arts College</div>
+                    <p class="member-bio">
+                        Providing visionary leadership and guidance for the college's digital transformation initiative.
+                        Ensuring the website reflects our institution's values and commitment to excellence in
+                        education.
+                    </p>
+                    <div class="member-skills">
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Academic Excellence</span>
+                        <span class="skill-tag">Vision</span>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:principal@sgacrmd.edu.in" class="contact-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+914567220268" class="contact-btn" title="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- B.Com CA HOD -->
+                <div class="team-member">
+                    <span class="badge"><i class="fas fa-user-tie"></i> HOD</span>
+                    <div class="member-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="member-name">HOD Name</h3>
+                    <div class="member-role">Head of Department</div>
+                    <div class="member-dept">B.Com (Computer Applications)</div>
+                    <p class="member-bio">
+                        Guiding the technical direction and ensuring the website meets the highest standards of quality.
+                        Providing valuable insights on user experience and functionality from an academic perspective.
+                    </p>
+                    <div class="member-skills">
+                        <span class="skill-tag">Computer Applications</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Quality Assurance</span>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:bcomca@sgacrmd.edu.in" class="contact-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+914567220268" class="contact-btn" title="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Web Developer -->
+                <div class="team-member featured">
+                    <span class="badge"><i class="fas fa-code"></i> Lead Developer</span>
+                    <div class="member-avatar">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="member-name">Karthikeyan S</h3>
+                    <div class="member-role">Lead Web Developer & Designer</div>
+                    <div class="member-dept">Department of Computer Science</div>
+                    <p class="member-bio">
+                        Designed and developed the complete website from scratch, implementing modern web technologies
+                        and best practices. Passionate about creating beautiful, functional, and accessible web
+                        experiences for the college community.
+                    </p>
+                    <div class="member-skills">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Web Development</span>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:karthikeyan@sgacrmd.edu.in" class="contact-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="contact-btn" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="contact-btn" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Technologies Used -->
+        <section class="mb-5 bg-light section-padding">
+            <div class="container">
+                <h2 class="section-title">Technologies Used</h2>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 40px;">
+                    <div
+                        style="background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <i class="fab fa-html5" style="font-size: 3rem; color: #e34c26; margin-bottom: 15px;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 5px;">HTML5</h4>
+                        <p style="color: #777; font-size: 0.9rem;">Structure & Semantics</p>
+                    </div>
+                    <div
+                        style="background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <i class="fab fa-css3-alt" style="font-size: 3rem; color: #264de4; margin-bottom: 15px;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 5px;">CSS3</h4>
+                        <p style="color: #777; font-size: 0.9rem;">Styling & Animations</p>
+                    </div>
+                    <div
+                        style="background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <i class="fab fa-js" style="font-size: 3rem; color: #f0db4f; margin-bottom: 15px;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 5px;">JavaScript</h4>
+                        <p style="color: #777; font-size: 0.9rem;">Interactivity & Logic</p>
+                    </div>
+                    <div
+                        style="background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 5px;">Responsive</h4>
+                        <p style="color: #777; font-size: 0.9rem;">Mobile-First Design</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Stats -->
+        <section class="mb-5">
+            <div
+                style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 60px 30px; border-radius: 15px; text-align: center; color: white;">
+                <h3 style="font-size: 2rem; margin-bottom: 40px;">Project Statistics</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                    <div>
+                        <div style="font-size: 3rem; font-weight: 700; margin-bottom: 10px;">9</div>
+                        <div style="font-size: 1.1rem; opacity: 0.9;">Pages Created</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 3rem; font-weight: 700; margin-bottom: 10px;">100%</div>
+                        <div style="font-size: 1.1rem; opacity: 0.9;">Responsive</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 3rem; font-weight: 700; margin-bottom: 10px;">12+</div>
+                        <div style="font-size: 1.1rem; opacity: 0.9;">Departments Covered</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 3rem; font-weight: 700; margin-bottom: 10px;"><i
+                                class="fas fa-heart"></i></div>
+                        <div style="font-size: 1.1rem; opacity: 0.9;">Made with Passion</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-top">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Ramanathapuram - 623 502</li>
+                        <li><i class="fas fa-phone"></i> +91-4567-220268</li>
+                        <li><i class="fas fa-envelope"></i> principal@sgacrmd.edu.in</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Departments</h4>
+                    <ul>
+                        <li><a href="departments.html">Arts</a></li>
+                        <li><a href="departments.html">Science</a></li>
+                        <li><a href="departments.html">Commerce</a></li>
+                        <li><a href="departments.html">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Location</h4>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3936.586011409799!2d78.79240037496588!3d9.369852883560485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b01a280efdc501b%3A0xa908b4526148c216!2sSethupathy%20Government%20Arts%20College!5e0!3m2!1sen!2sin!4v1756964254487!5m2!1sen!2sin"
+                            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Sethupathy Government Arts College. All Rights Reserved. | <a href="developer.html"
+                        style="color: var(--accent-gold);">Development Team</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (toggleBtn && mainNav) {
+            toggleBtn.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+
+</html>

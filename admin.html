@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - SGAC</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-shield-alt"></i>
+                <h2>SGAC Admin Panel</h2>
+                <p>Sethupathy Government Arts College</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <div id="login-error" class="error-message"></div>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-cog"></i> SGAC Admin</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="faculty">
+                    <i class="fas fa-users"></i> Faculty Management
+                </a>
+                <a href="#" class="nav-item" data-section="carousel">
+                    <i class="fas fa-images"></i> Carousel
+                </a>
+                <a href="#" class="nav-item" data-section="notifications">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+                <a href="#" class="nav-item" data-section="gallery">
+                    <i class="fas fa-photo-video"></i> Gallery
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="#" class="nav-item logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h1 id="section-title">Dashboard</h1>
+                <div class="user-info">
+                    <span id="admin-username">Admin</span>
+                    <button class="btn-logout logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="total-faculty">0</h3>
+                            <p>Total Faculty</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-bell"></i>
+                        <div class="stat-info">
+                            <h3 id="total-notifications">0</h3>
+                            <p>Notifications</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-images"></i>
+                        <div class="stat-info">
+                            <h3 id="total-carousel">0</h3>
+                            <p>Carousel Slides</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-photo-video"></i>
+                        <div class="stat-info">
+                            <h3 id="total-gallery">0</h3>
+                            <p>Gallery Images</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="btn-action" onclick="switchSection('faculty')">
+                            <i class="fas fa-user-plus"></i> Add Faculty
+                        </button>
+                        <button class="btn-action" onclick="switchSection('notifications')">
+                            <i class="fas fa-plus"></i> Add Notification
+                        </button>
+                        <button class="btn-action" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button class="btn-action" onclick="window.open('index.html', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> View Website
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Faculty Management Section -->
+            <section id="faculty-section" class="content-section">
+                <div class="section-header">
+                    <h3>Faculty Management</h3>
+                    <button class="btn-primary" onclick="showAddFacultyModal()">
+                        <i class="fas fa-plus"></i> Add Faculty
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="faculty-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Department</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="faculty-tbody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Carousel Section -->
+            <section id="carousel-section" class="content-section">
+                <div class="section-header">
+                    <h3>Carousel Management</h3>
+                    <button class="btn-primary" onclick="showAddCarouselModal()">
+                        <i class="fas fa-plus"></i> Add Slide
+                    </button>
+                </div>
+                <div id="carousel-list" class="carousel-grid">
+                    <!-- Dynamically populated -->
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="notifications-section" class="content-section">
+                <div class="section-header">
+                    <h3>Notifications Management</h3>
+                    <button class="btn-primary" onclick="showAddNotificationModal()">
+                        <i class="fas fa-plus"></i> Add Notification
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="notifications-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Text</th>
+                                <th>Date</th>
+                                <th>Important</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notifications-tbody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery-section" class="content-section">
+                <div class="section-header">
+                    <h3>Gallery Management</h3>
+                    <button class="btn-primary" onclick="showAddGalleryModal()">
+                        <i class="fas fa-plus"></i> Add Image
+                    </button>
+                </div>
+                <div id="gallery-grid" class="gallery-admin-grid">
+                    <!-- Dynamically populated -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section">
+                <h3>Settings</h3>
+                <div class="settings-container">
+                    <div class="setting-card">
+                        <h4><i class="fas fa-key"></i> Change Password</h4>
+                        <form id="change-password-form">
+                            <input type="password" placeholder="Current Password" id="current-password" required>
+                            <input type="password" placeholder="New Password" id="new-password" required>
+                            <input type="password" placeholder="Confirm Password" id="confirm-password" required>
+                            <button type="submit" class="btn-primary">Update Password</button>
+                        </form>
+                    </div>
+                    <div class="setting-card">
+                        <h4><i class="fas fa-database"></i> Data Management</h4>
+                        <button class="btn-action" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                        <button class="btn-action" onclick="document.getElementById('import-file').click()">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                        <input type="file" id="import-file" accept=".json" style="display: none;"
+                            onchange="importData(event)">
+                        <button class="btn-danger" onclick="resetData()">
+                            <i class="fas fa-redo"></i> Reset to Default
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals will be added dynamically by admin.js -->
+    <div id="modal-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
