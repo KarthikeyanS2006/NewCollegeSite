@@ -1,0 +1,1031 @@
+// ==========================================
+// ALAGAPPA UNIVERSITY - SINGLE PAGE APPLICATION
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ==========================================
+    // CONFIGURATION & DATA
+    // ==========================================
+
+    // Carousel Images
+    const carouselData = [
+        {
+            src: './assets/images/culturals01.jpg',
+            title: 'Academic Excellence',
+            desc: 'Dedicated faculty and comprehensive curriculum for holistic development.'
+        },
+        {
+            src: './assets/images/college2.jpg',
+            title: 'State-of-the-Art Facilities',
+            desc: 'Modern classrooms, labs, and library to support your learning journey.'
+        },
+        {
+            src: './assets/images/college3.jpg',
+            title: 'Vibrant Campus Life',
+            desc: 'Engage in sports, cultural events, and student clubs.'
+        }
+    ];
+
+    // News Ticker Items
+    const newsData = [
+        { text: 'Admission Open for 2025-2026 Academic Year', link: '#admissions' },
+        { text: 'UG Examination Results Declared - Check Now', link: 'https://www.alagappauniversity.ac.in/examinations/exam-results?Mode=AC' },
+        { text: 'Alumni Meet scheduled for next month', link: '#contact' }
+    ];
+
+    // Departments Data
+    const departmentsData = [
+        { id: 'tamil', name: 'Tamil', icon: 'fas fa-book-open', description: 'Promoting the rich heritage of Tamil language and literature.', category: 'arts' },
+        { id: 'english', name: 'English', icon: 'fas fa-language', description: 'Fostering communication skills and literary appreciation.', category: 'arts' },
+        { id: 'history', name: 'History', icon: 'fas fa-landmark', description: 'Understanding the past to shape the future.', category: 'arts' },
+        { id: 'economics', name: 'Economics', icon: 'fas fa-chart-line', description: 'Analyzing economic trends and development.', category: 'arts' },
+        { id: 'mathematics', name: 'Mathematics', icon: 'fas fa-square-root-alt', description: 'Exploring the language of the universe.', category: 'science' },
+        { id: 'physics', name: 'Physics', icon: 'fas fa-atom', description: 'Unraveling the mysteries of matter and energy.', category: 'science' },
+        { id: 'chemistry', name: 'Chemistry', icon: 'fas fa-flask', description: 'The science of substances and their transformations.', category: 'science' },
+        { id: 'botany', name: 'Botany', icon: 'fas fa-leaf', description: 'Studying plant life and biodiversity.', category: 'science' },
+        { id: 'zoology', name: 'Zoology', icon: 'fas fa-dna', description: 'Understanding animal life and biology.', category: 'science' },
+        { id: 'computer-science', name: 'Computer Science', icon: 'fas fa-laptop-code', description: 'Innovating with technology and computing.', category: 'science' },
+        { id: 'commerce', name: 'Commerce', icon: 'fas fa-business-time', description: 'Excellence in business and financial studies.', category: 'commerce' },
+        { id: 'commerce-ca', name: 'Commerce (CA)', icon: 'fas fa-desktop', description: 'Integrating commerce with computer applications.', category: 'commerce' }
+    ];
+
+    // Faculty Data
+    const facultyData = [
+        // Tamil Department
+        { id: 1, name: 'Dr. Selvam Murugan', designation: 'Professor & Head', department: 'tamil', email: 'selvam.tamil@alagappauniversity.ac.in', phone: '+91-4567-293123' },
+        { id: 2, name: 'Dr. Lakshmi Priya', designation: 'Associate Professor', department: 'tamil', email: 'lakshmi.tamil@alagappauniversity.ac.in', phone: '+91-4567-293124' },
+
+        // English Department
+        { id: 3, name: 'Dr. Rajesh Kumar', designation: 'Professor & Head', department: 'english', email: 'rajesh.english@alagappauniversity.ac.in', phone: '+91-4567-293125' },
+        { id: 4, name: 'Dr. Priya Sharma', designation: 'Assistant Professor', department: 'english', email: 'priya.english@alagappauniversity.ac.in', phone: '+91-4567-293126' },
+
+        // Mathematics Department
+        { id: 5, name: 'Dr. Ramesh Babu', designation: 'Professor & Head', department: 'mathematics', email: 'ramesh.maths@alagappauniversity.ac.in', phone: '+91-4567-293127' },
+        { id: 6, name: 'Dr. Anitha Devi', designation: 'Associate Professor', department: 'mathematics', email: 'anitha.maths@alagappauniversity.ac.in', phone: '+91-4567-293128' },
+        { id: 7, name: 'Dr. Suresh Kumar', designation: 'Assistant Professor', department: 'mathematics', email: 'suresh.maths@alagappauniversity.ac.in', phone: '+91-4567-293129' },
+
+        // Physics Department
+        { id: 8, name: 'Dr. Venkatesh Raman', designation: 'Professor & Head', department: 'physics', email: 'venkatesh.physics@alagappauniversity.ac.in', phone: '+91-4567-293130' },
+        { id: 9, name: 'Dr. Kavitha Rani', designation: 'Assistant Professor', department: 'physics', email: 'kavitha.physics@alagappauniversity.ac.in', phone: '+91-4567-293131' },
+
+        // Chemistry Department
+        { id: 10, name: 'Dr. Karthik Subramanian', designation: 'Professor & Head', department: 'chemistry', email: 'karthik.chemistry@alagappauniversity.ac.in', phone: '+91-4567-293132' },
+        { id: 11, name: 'Dr. Meena Sundaram', designation: 'Associate Professor', department: 'chemistry', email: 'meena.chemistry@alagappauniversity.ac.in', phone: '+91-4567-293133' },
+
+        // Computer Science Department
+        { id: 12, name: 'Dr. Arun Prakash', designation: 'Professor & Head', department: 'computer-science', email: 'arun.cs@alagappauniversity.ac.in', phone: '+91-4567-293134' },
+        { id: 13, name: 'Dr. Divya Bharathi', designation: 'Assistant Professor', department: 'computer-science', email: 'divya.cs@alagappauniversity.ac.in', phone: '+91-4567-293135' },
+        { id: 14, name: 'Dr. Ganesh Babu', designation: 'Assistant Professor', department: 'computer-science', email: 'ganesh.cs@alagappauniversity.ac.in', phone: '+91-4567-293136' },
+
+        // Commerce Department
+        { id: 15, name: 'Dr. Vijay Kumar', designation: 'Professor & Head', department: 'commerce', email: 'vijay.commerce@alagappauniversity.ac.in', phone: '+91-4567-293137' },
+        { id: 16, name: 'Dr. Sangeetha Devi', designation: 'Associate Professor', department: 'commerce', email: 'sangeetha.commerce@alagappauniversity.ac.in', phone: '+91-4567-293138' },
+
+        // History Department
+        { id: 17, name: 'Dr. Murugan Pandian', designation: 'Professor & Head', department: 'history', email: 'murugan.history@alagappauniversity.ac.in', phone: '+91-4567-293139' },
+
+        // Economics Department
+        { id: 18, name: 'Dr. Saravanan Kumar', designation: 'Associate Professor & Head', department: 'economics', email: 'saravanan.economics@alagappauniversity.ac.in', phone: '+91-4567-293140' },
+
+        // Botany Department
+        { id: 19, name: 'Dr. Rajalakshmi Devi', designation: 'Professor & Head', department: 'botany', email: 'rajalakshmi.botany@alagappauniversity.ac.in', phone: '+91-4567-293141' },
+
+        // Zoology Department
+        { id: 20, name: 'Dr. Senthil Kumar', designation: 'Associate Professor & Head', department: 'zoology', email: 'senthil.zoology@alagappauniversity.ac.in', phone: '+91-4567-293142' }
+    ];
+
+    // Gallery Images
+    const galleryData = [
+        { src: './assets/images/entrence.jpg', caption: 'Main Entrance' },
+        { src: './assets/images/college2.jpg', caption: 'Campus View' },
+        { src: './assets/images/college3.jpg', caption: 'Academic Block' },
+        { src: './assets/images/culturals01.jpg', caption: 'Cultural Events' },
+        { src: './assets/images/college1.jpg', caption: 'Student Activities' },
+        { src: './assets/images/bcomcertificate.jpg', caption: 'Convocation' }
+    ];
+
+    // ==========================================
+    // SPA ROUTER
+    // ==========================================
+
+    class Router {
+        constructor() {
+            this.routes = {};
+            this.currentRoute = '';
+            this.init();
+        }
+
+        init() {
+            window.addEventListener('hashchange', () => this.handleRoute());
+            window.addEventListener('load', () => this.handleRoute());
+        }
+
+        register(path, handler) {
+            this.routes[path] = handler;
+        }
+
+        handleRoute() {
+            const hash = window.location.hash.slice(1) || 'home';
+            const [route, ...params] = hash.split('/');
+
+            // Add page transition
+            const appContent = document.getElementById('app-content');
+            if (appContent) {
+                appContent.classList.add('page-transition-out');
+
+                setTimeout(() => {
+                    if (this.routes[route]) {
+                        this.currentRoute = route;
+                        this.routes[route](params);
+                        this.updateActiveNav(route);
+                    } else {
+                        this.routes['home']();
+                        this.updateActiveNav('home');
+                    }
+
+                    appContent.classList.remove('page-transition-out');
+                    appContent.classList.add('page-transition-in');
+
+                    setTimeout(() => {
+                        appContent.classList.remove('page-transition-in');
+                    }, 500);
+
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }
+        }
+
+        updateActiveNav(route) {
+            document.querySelectorAll('.nav-list a').forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === `#${route}` || (href === 'index.html' && route === 'home')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        navigate(path) {
+            window.location.hash = path;
+        }
+    }
+
+    const router = new Router();
+
+    // ==========================================
+    // PAGE TEMPLATES
+    // ==========================================
+
+    const templates = {
+        home: () => `
+            <section class="hero-section">
+                <div class="carousel-container" id="hero-carousel">
+                    <!-- Carousel injected by initCarousel -->
+                </div>
+            </section>
+
+            <!-- News Ticker -->
+            <div class="news-ticker">
+                <div class="container ticker-wrap">
+                    <div class="ticker-label">Latest News</div>
+                    <div class="ticker-content" id="news-ticker-content">
+                        <!-- News injected by initNewsTicker -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links & Principal Message -->
+            <section class="section-padding">
+                <div class="container grid-2-1">
+                    <!-- Quick Links Grid -->
+                    <div class="quick-links-wrapper">
+                        <h3 class="section-title">Quick Access</h3>
+                        <div class="quick-links-grid">
+                            <a href="https://www.tngasa.in/" target="_blank" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-user-graduate"></i></div>
+                                <h4>Admission 2025</h4>
+                                <p>Apply Online</p>
+                            </a>
+                            <a href="https://www.alagappauniversity.ac.in/examinations/exam-results?Mode=AC" target="_blank" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-poll-h"></i></div>
+                                <h4>Exam Results</h4>
+                                <p>Check Status</p>
+                            </a>
+                            <a href="./assets/docs/calender/UG 2025 TimeTable.pdf" target="_blank" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-calendar-alt"></i></div>
+                                <h4>Time Table</h4>
+                                <p>Exam Schedule</p>
+                            </a>
+                            <a href="#dashboard" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-hand-holding-usd"></i></div>
+                                <h4>Scholarships</h4>
+                                <p>Student Aid</p>
+                            </a>
+                            <a href="#departments" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-book-reader"></i></div>
+                                <h4>Departments</h4>
+                                <p>Explore Courses</p>
+                            </a>
+                            <a href="#gallery" class="quick-link-card">
+                                <div class="icon-box"><i class="fas fa-images"></i></div>
+                                <h4>Gallery</h4>
+                                <p>Campus Life</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Principal Message -->
+                    <div class="principal-card">
+                        <div class="card-header">
+                            <h3>Principal's Message</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="./assets/images/Principal_image.jpg" alt="Principal" class="principal-img">
+                            <blockquote>
+                                "Education is the most powerful weapon which you can use to change the world. At Alagappa University, we strive to empower our students with knowledge and values."
+                            </blockquote>
+                            <div class="principal-name">
+                                <strong>Dr. Principal Name</strong>
+                                <span>Principal</span>
+                            </div>
+                            <a href="#about" class="read-more">Read Full Message <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <i class="fas fa-university"></i>
+                            <span class="count" data-target="14">0</span>
+                            <p>Departments</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span class="count" data-target="150">0</span>
+                            <p>Faculty Members</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <span class="count" data-target="3500">0</span>
+                            <p>Students</p>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-book"></i>
+                            <span class="count" data-target="25">0</span>
+                            <p>Courses Offered</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Preview -->
+            <section class="section-padding bg-light">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h3 class="section-title">Campus Life</h3>
+                        <p>Glimpses of our vibrant campus environment</p>
+                    </div>
+                    <div class="gallery-preview" id="gallery-preview">
+                        ${galleryData.slice(0, 4).map(img => `
+                            <div class="gallery-item" data-src="${img.src}">
+                                <img src="${img.src}" alt="${img.caption}">
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="#gallery" class="btn-outline">View Full Gallery</a>
+                    </div>
+                </div>
+            </section>
+        `,
+
+        about: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college1.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>About Us</h1>
+                        <p>Excellence in Education Since Inception</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="content-section">
+                        <h2 class="section-title" id="history">Our History</h2>
+                        <p>Alagappa University stands as a beacon of higher education, committed to providing quality education to students from all walks of life. Our institution has a rich history of academic excellence and community service.</p>
+                        
+                        <h2 class="section-title" id="vision">Vision & Mission</h2>
+                        <div class="vision-mission-grid">
+                            <div class="vm-card">
+                                <h3><i class="fas fa-eye"></i> Vision</h3>
+                                <p>To be a premier institution of higher learning, fostering academic excellence, research, and holistic development of students.</p>
+                            </div>
+                            <div class="vm-card">
+                                <h3><i class="fas fa-bullseye"></i> Mission</h3>
+                                <p>To provide quality education, promote research and innovation, and develop socially responsible citizens who contribute to nation-building.</p>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title" id="principal">Principal's Desk</h2>
+                        <div class="principal-message">
+                            <img src="./assets/images/Principal_image.jpg" alt="Principal" class="principal-large-img">
+                            <div class="message-content">
+                                <h3>Dr. Principal Name</h3>
+                                <p class="designation">Principal, Alagappa University</p>
+                                <p>Welcome to Alagappa University! It is my privilege to lead this esteemed institution dedicated to academic excellence and holistic student development. Our university has consistently maintained high standards in teaching, research, and community engagement.</p>
+                                <p>We believe in nurturing not just academic prowess but also character, leadership, and social responsibility. Our dedicated faculty, state-of-the-art facilities, and vibrant campus life create an environment where students can thrive and realize their full potential.</p>
+                                <p>I invite you to join our academic community and embark on a transformative educational journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `,
+
+        academics: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college2.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Academics</h1>
+                        <p>Comprehensive Programs for Holistic Development</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="content-section">
+                        <h2 class="section-title">Academic Programs</h2>
+                        <p>Alagappa University offers a wide range of undergraduate and postgraduate programs across various disciplines.</p>
+                        
+                        <div class="programs-grid">
+                            <div class="program-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>Undergraduate Programs</h3>
+                                <p>B.A., B.Sc., B.Com., and specialized programs in various disciplines.</p>
+                                <a href="#departments" class="btn-outline">View Departments</a>
+                            </div>
+                            <div class="program-card">
+                                <i class="fas fa-user-graduate"></i>
+                                <h3>Postgraduate Programs</h3>
+                                <p>M.A., M.Sc., M.Com., and advanced research programs.</p>
+                                <a href="#departments" class="btn-outline">View Departments</a>
+                            </div>
+                            <div class="program-card">
+                                <i class="fas fa-microscope"></i>
+                                <h3>Research Programs</h3>
+                                <p>M.Phil. and Ph.D. programs for advanced research scholars.</p>
+                                <a href="#departments" class="btn-outline">View Departments</a>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Academic Calendar</h2>
+                        <p>Download the current academic calendar for important dates and schedules.</p>
+                        <a href="./assets/docs/calender/calendar(2025-2026).pdf" target="_blank" class="btn-primary">
+                            <i class="fas fa-download"></i> Download Calendar
+                        </a>
+                    </div>
+                </div>
+            </section>
+        `,
+
+        departments: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college1.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Our Departments</h1>
+                        <p>Centres of Academic Excellence and Research</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="facilities-grid">
+                        ${departmentsData.map(dept => `
+                            <div class="facility-item" id="${dept.id}" data-department="${dept.id}">
+                                <i class="${dept.icon}"></i>
+                                <h4>${dept.name}</h4>
+                                <p>${dept.description}</p>
+                                <a href="#faculty/${dept.id}" class="dept-link">View Faculty <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </section>
+        `,
+
+        faculty: (params) => {
+            const departmentFilter = params[0];
+            let filteredFaculty = facultyData;
+            let pageTitle = 'Our Esteemed Faculty';
+            let pageSubtitle = 'Dedicated educators shaping the future of our students';
+
+            if (departmentFilter) {
+                const dept = departmentsData.find(d => d.id === departmentFilter);
+                if (dept) {
+                    filteredFaculty = facultyData.filter(f => f.department === departmentFilter);
+                    pageTitle = `${dept.name} Department Faculty`;
+                    pageSubtitle = dept.description;
+                }
+            }
+
+            // Group faculty by department
+            const groupedFaculty = {};
+            filteredFaculty.forEach(faculty => {
+                if (!groupedFaculty[faculty.department]) {
+                    groupedFaculty[faculty.department] = [];
+                }
+                groupedFaculty[faculty.department].push(faculty);
+            });
+
+            return `
+                <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college3.jpg') center/cover;">
+                    <div class="container">
+                        <div class="hero-content">
+                            <h1>${pageTitle}</h1>
+                            <p>${pageSubtitle}</p>
+                            ${departmentFilter ? `<a href="#faculty" class="btn-outline">View All Faculty</a>` : ''}
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-padding">
+                    <div class="container">
+                        ${!departmentFilter ? `
+                            <div class="department-filter">
+                                <h3>Filter by Department:</h3>
+                                <div class="filter-buttons">
+                                    <button class="filter-btn active" data-filter="all">All Departments</button>
+                                    ${departmentsData.map(dept => `
+                                        <button class="filter-btn" data-filter="${dept.id}">${dept.name}</button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        ${Object.keys(groupedFaculty).map(deptId => {
+                const dept = departmentsData.find(d => d.id === deptId);
+                const deptFaculty = groupedFaculty[deptId];
+
+                return `
+                                <div class="faculty-department-section" data-department="${deptId}">
+                                    <h2 class="section-title">${dept ? dept.name : 'Department'}</h2>
+                                    <div class="faculty-grid">
+                                        ${deptFaculty.map(faculty => `
+                                            <div class="faculty-card" data-faculty-id="${faculty.id}">
+                                                <div class="faculty-img-container">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="faculty-info">
+                                                    <h3 class="faculty-name">${faculty.name}</h3>
+                                                    <div class="faculty-designation">${faculty.designation}</div>
+                                                    <div class="faculty-dept">${dept ? dept.name : ''}</div>
+                                                    <div class="faculty-contact">
+                                                        <a href="mailto:${faculty.email}" title="Email"><i class="fas fa-envelope"></i></a>
+                                                        <a href="tel:${faculty.phone}" title="Phone"><i class="fas fa-phone"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            `;
+            }).join('')}
+                    </div>
+                </section>
+            `;
+        },
+
+        admissions: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college2.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Admissions</h1>
+                        <p>Join Our Academic Community</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="content-section">
+                        <h2 class="section-title">Admission Process</h2>
+                        <p>Admissions to Alagappa University are conducted through the Tamil Nadu Government's centralized admission portal.</p>
+                        
+                        <div class="admission-steps">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <h3>Online Application</h3>
+                                <p>Visit the official Tamil Nadu admission portal and fill out the application form.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <h3>Document Verification</h3>
+                                <p>Submit required documents for verification at the college.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <h3>Counseling</h3>
+                                <p>Attend counseling sessions and select your preferred course.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">4</div>
+                                <h3>Enrollment</h3>
+                                <p>Complete the enrollment process and pay the fees.</p>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="https://www.tngasa.in/" target="_blank" class="btn-primary">
+                                <i class="fas fa-external-link-alt"></i> Apply Now
+                            </a>
+                        </div>
+
+                        <h2 class="section-title">Important Dates</h2>
+                        <div class="dates-table">
+                            <table>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Date</th>
+                                </tr>
+                                <tr>
+                                    <td>Application Start Date</td>
+                                    <td>June 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>Application End Date</td>
+                                    <td>July 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>Counseling Dates</td>
+                                    <td>August 2025</td>
+                                </tr>
+                                <tr>
+                                    <td>Classes Commence</td>
+                                    <td>September 2025</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `,
+
+        iqac: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college1.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>IQAC</h1>
+                        <p>Internal Quality Assurance Cell</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="content-section">
+                        <h2 class="section-title">About IQAC</h2>
+                        <p>The Internal Quality Assurance Cell (IQAC) is committed to ensuring and enhancing the quality of education at Alagappa University. IQAC works towards continuous improvement in all academic and administrative processes.</p>
+                        
+                        <h2 class="section-title">Objectives</h2>
+                        <ul class="objectives-list">
+                            <li>To develop a system for conscious, consistent, and catalytic action to improve academic and administrative performance</li>
+                            <li>To promote measures for institutional functioning towards quality enhancement</li>
+                            <li>To channelize efforts and measures of the institution towards academic excellence</li>
+                            <li>To ensure timely, efficient, and progressive performance of academic, administrative, and financial tasks</li>
+                        </ul>
+
+                        <h2 class="section-title">NAAC Accreditation</h2>
+                        <div class="naac-card">
+                            <i class="fas fa-award"></i>
+                            <h3>Grade 'A' Accredited</h3>
+                            <p>Alagappa University is accredited with 'A' Grade by NAAC, reflecting our commitment to quality education.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `,
+
+        gallery: () => `
+            <section class="page-hero" style="background: linear-gradient(rgba(21, 103, 195, 0.9), rgba(41, 128, 185, 0.9)), url('./assets/images/college3.jpg') center/cover;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Gallery</h1>
+                        <p>Capturing Moments of Campus Life</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="gallery-grid">
+                        ${galleryData.map((img, index) => `
+                            <div class="gallery-item" data-index="${index}">
+                                <img src="${img.src}" alt="${img.caption}" loading="lazy">
+                                <div class="gallery-caption">${img.caption}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </section>
+        `
+    };
+
+    // ==========================================
+    // REGISTER ROUTES
+    // ==========================================
+
+    router.register('home', () => {
+        document.getElementById('app-content').innerHTML = templates.home();
+        initCarousel();
+        initNewsTicker();
+        initStatsCounter();
+        initGalleryPreview();
+    });
+
+    router.register('about', () => {
+        document.getElementById('app-content').innerHTML = templates.about();
+    });
+
+    router.register('academics', () => {
+        document.getElementById('app-content').innerHTML = templates.academics();
+    });
+
+    router.register('departments', () => {
+        document.getElementById('app-content').innerHTML = templates.departments();
+        initDepartmentLinks();
+    });
+
+    router.register('faculty', (params) => {
+        document.getElementById('app-content').innerHTML = templates.faculty(params);
+        initFacultyFilter();
+    });
+
+    router.register('admissions', () => {
+        document.getElementById('app-content').innerHTML = templates.admissions();
+    });
+
+    router.register('iqac', () => {
+        document.getElementById('app-content').innerHTML = templates.iqac();
+    });
+
+    router.register('gallery', () => {
+        document.getElementById('app-content').innerHTML = templates.gallery();
+        initGalleryLightbox();
+    });
+
+    // ==========================================
+    // COMPONENT INITIALIZERS
+    // ==========================================
+
+    function initCarousel() {
+        const carouselContainer = document.getElementById('hero-carousel');
+        if (!carouselContainer) return;
+
+        carouselContainer.innerHTML = '';
+
+        // Create controls
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'carousel-control prev';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'carousel-control next';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+        const indicators = document.createElement('div');
+        indicators.className = 'carousel-indicators';
+
+        carouselContainer.appendChild(prevBtn);
+        carouselContainer.appendChild(nextBtn);
+        carouselContainer.appendChild(indicators);
+
+        // Render Slides
+        carouselData.forEach((item, index) => {
+            const slide = document.createElement('div');
+            slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+            slide.style.backgroundImage = `url('${item.src}')`;
+
+            slide.innerHTML = `
+                <div class="overlay"></div>
+                <div class="carousel-content">
+                    <h2>${item.title}</h2>
+                    <p>${item.desc}</p>
+                    <a href="#admissions" class="btn-primary">Apply Now</a>
+                </div>
+            `;
+
+            carouselContainer.insertBefore(slide, prevBtn);
+
+            // Render Indicators
+            const dot = document.createElement('div');
+            dot.className = `indicator ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                startSlideTimer();
+            });
+            indicators.appendChild(dot);
+        });
+
+        // Carousel Logic
+        const slides = carouselContainer.querySelectorAll('.carousel-slide');
+        const dots = indicators.querySelectorAll('.indicator');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            let nextIndex = index;
+            if (index >= slides.length) nextIndex = 0;
+            else if (index < 0) nextIndex = slides.length - 1;
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.zIndex = 1;
+            });
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[nextIndex].classList.add('active');
+            slides[nextIndex].style.zIndex = 2;
+            dots[nextIndex].classList.add('active');
+
+            currentSlide = nextIndex;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startSlideTimer() {
+            stopSlideTimer();
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopSlideTimer() {
+            clearInterval(slideInterval);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startSlideTimer();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startSlideTimer();
+        });
+
+        startSlideTimer();
+    }
+
+    function initNewsTicker() {
+        const tickerContent = document.getElementById('news-ticker-content');
+        if (!tickerContent) return;
+
+        tickerContent.innerHTML = '';
+        const tickerItem = document.createElement('div');
+        tickerItem.className = 'ticker-item';
+
+        const newsHTML = newsData.map(item =>
+            `<a href="${item.link}">${item.text}</a>`
+        ).join(' &nbsp;&nbsp; | &nbsp;&nbsp; ');
+
+        tickerItem.innerHTML = newsHTML;
+        tickerContent.appendChild(tickerItem);
+    }
+
+    function initStatsCounter() {
+        const statsSection = document.querySelector('.stats-section');
+        const counters = document.querySelectorAll('.count');
+        let started = false;
+
+        function startCounter(counter) {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / 100;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => startCounter(counter), 20);
+            } else {
+                counter.innerText = target;
+            }
+        }
+
+        if (statsSection && counters.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !started) {
+                    counters.forEach(counter => startCounter(counter));
+                    started = true;
+                }
+            }, { threshold: 0.5 });
+
+            observer.observe(statsSection);
+        }
+    }
+
+    function initGalleryPreview() {
+        const galleryItems = document.querySelectorAll('#gallery-preview .gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                router.navigate('gallery');
+            });
+        });
+    }
+
+    function initDepartmentLinks() {
+        const deptLinks = document.querySelectorAll('.dept-link');
+        deptLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                router.navigate(href.slice(1));
+            });
+        });
+    }
+
+    function initFacultyFilter() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (filter === 'all') {
+                    router.navigate('faculty');
+                } else {
+                    router.navigate(`faculty/${filter}`);
+                }
+            });
+        });
+    }
+
+    function initGalleryLightbox() {
+        const galleryItems = document.querySelectorAll('.gallery-grid .gallery-item');
+
+        // Create Modal
+        const modal = document.createElement('div');
+        modal.className = 'lightbox-modal';
+        modal.innerHTML = `
+            <div class="lightbox-content">
+                <span class="lightbox-close">&times;</span>
+                <button class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                <img src="" alt="Gallery Image">
+                <div class="lightbox-caption"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const modalImg = modal.querySelector('img');
+        const caption = modal.querySelector('.lightbox-caption');
+        const closeBtn = modal.querySelector('.lightbox-close');
+        const prevBtn = modal.querySelector('.lightbox-prev');
+        const nextBtn = modal.querySelector('.lightbox-next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            if (index < 0) index = galleryData.length - 1;
+            if (index >= galleryData.length) index = 0;
+
+            currentIndex = index;
+            modalImg.src = galleryData[index].src;
+            caption.textContent = galleryData[index].caption;
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                showImage(index);
+                modal.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        prevBtn.addEventListener('click', () => {
+            showImage(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            showImage(currentIndex + 1);
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') modal.classList.remove('active');
+            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+        });
+    }
+
+    // ==========================================
+    // GLOBAL FEATURES
+    // ==========================================
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    if (mobileBtn && mainNav) {
+        mobileBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                    mobileBtn.querySelector('i').classList.remove('fa-times');
+                    mobileBtn.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+    }
+
+    // Mobile Dropdown Toggle
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    // Scroll to Top
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Update all navigation links to use hash routing
+    document.querySelectorAll('a[href^="pages/"], a[href="index.html"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === 'index.html') {
+            link.setAttribute('href', '#home');
+        } else if (href.startsWith('pages/')) {
+            const page = href.replace('pages/', '').replace('.html', '');
+            link.setAttribute('href', `#${page}`);
+        }
+    });
+
+    // Handle contact link scroll
+    document.querySelectorAll('a[href="#contact"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const footer = document.getElementById('contact');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+});
